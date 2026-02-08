@@ -1,0 +1,325 @@
+:root {
+    --primary-pink: #fce4ec;
+    --accent-pink: #f06292;
+    --warm-red: #d81b60;
+    --gold: #d4af37;
+    --cream: #fff9f0;
+    --soft-grey: #eeeeee;
+    --text-color: #5d4037;
+    --glass-bg: rgba(255, 255, 255, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-color);
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Allow scrolling if content is long */
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#app {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%);
+}
+
+/* Background Animations */
+.animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-element {
+    position: absolute;
+    opacity: 0.6;
+    animation: float var(--duration) linear infinite;
+    font-size: var(--size);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Page Layout */
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Changed from center to top to allow scroll flow */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
+    z-index: 5;
+    padding: 40px 20px;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content-wrapper {
+    max-width: 850px;
+    width: 95%;
+    text-align: center;
+    padding: 3.5rem 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    /* More opaque for better readability */
+    backdrop-filter: blur(12px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 50px rgba(240, 98, 146, 0.15);
+    position: relative;
+    z-index: 10;
+}
+
+/* Page 1 Specifics */
+.elegant-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    color: #4e342e;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.elegant-text span {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: var(--warm-red);
+    margin-top: 15px;
+    text-shadow: 2px 2px 4px rgba(216, 27, 96, 0.1);
+}
+
+.since-text {
+    font-size: 1.1rem;
+    color: var(--accent-pink);
+    letter-spacing: 2px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+
+.btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-yes {
+    background: linear-gradient(45deg, var(--warm-red), var(--gold));
+    color: white;
+    min-width: 150px;
+}
+
+.btn-yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(216, 27, 96, 0.3);
+}
+
+.btn-no {
+    background: var(--soft-grey);
+    color: #888;
+    position: relative;
+    /* Will be absolute via JS when moving */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Page 2 Specifics */
+.celebration-heading {
+    font-family: 'Great Vibes', 'Playfair Display', serif;
+    font-size: 3.5rem;
+    /* Reduced size so it fits better */
+    color: var(--warm-red);
+    margin-bottom: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite alternate;
+    line-height: 1.2;
+}
+
+.heading-emoji {
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    font-size: 3.5rem;
+    vertical-align: middle;
+    display: inline-block;
+    color: #ff69b4;
+    /* Hot pink fallback */
+    line-height: 1;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+.sub-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stats-container {
+    margin: 2rem 0;
+}
+
+.counter {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+}
+
+.counter-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #880e4f;
+    /* Darker pink for better contrast */
+    letter-spacing: 2px;
+}
+
+.visual-container {
+    margin: 1.5rem auto;
+    width: 280px;
+    /* Scaled down for better fit */
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 6px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.visual-container:hover {
+    transform: rotate(2deg) scale(1.02);
+}
+
+.main-visual {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sparkle Animation */
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle-anim 1s linear forwards;
+}
+
+@keyframes sparkle-anim {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) rotate(180deg) translate(50px, 50px);
+        opacity: 0;
+    }
+}
+
+.personal-message {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #3e2723;
+    /* Very dark brown for maximum contrast */
+    line-height: 1.6;
+    margin-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* Decorations */
+.floral-decoration {
+    font-size: 2rem;
+    position: absolute;
+}
+
+.floral-decoration.top {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.floral-decoration.bottom {
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .elegant-text {
+        font-size: 1.8rem;
+    }
+
+    .elegant-text span {
+        font-size: 2.2rem;
+    }
+
+    .celebration-heading {
+        font-size: 2.5rem;
+    }
+
+    .content-wrapper {
+        padding: 2rem 1rem;
+    }
+}
