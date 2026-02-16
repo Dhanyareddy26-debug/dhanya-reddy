@@ -1,0 +1,16 @@
+{
+  "name": "Anniversary Celebration",
+  "short_name": "Anniversary",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff9f0",
+  "theme_color": "#d81b60",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "app_icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
